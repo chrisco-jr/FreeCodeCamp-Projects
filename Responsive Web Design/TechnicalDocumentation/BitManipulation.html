@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>C++ Bit Manipulation Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>
+        C++ Bit Manipulation Documentation 
+      </header>
+      <ul>
+        <li>
+          <a class="nav-link" href="#Introduction">Introduction</a>  
+        </li>
+        <li>
+          <a class="nav-link" href="#Bit_Operations">Bit Operations</a>  
+        </li>
+        <li>
+          <a class="nav-link" href="#Reading_Bits">Reading Bits</a>  
+        </li>
+        <li>
+          <a class="nav-link" href="#Writing_to_a_Field">Writing to a Field</a>  
+        </li>
+        <li>
+          <a class="nav-link" href="#Conclusion">Conclusion</a>  
+        </li>
+      <ul>
+    </nav>
+    <main id="main-doc">
+      <section id="Introduction" class="main-section">
+        <header>Introduction</header>
+          <article>
+            <p>C++ is a versatile high-level programming language first released in 1985 by Bjarne Stroustrup. It serves as an expansion of the original C language, introducing new features such as support for newer objected oriented programming practices over time. It has since then underwent many iterations, with C++20 being the current standard.</p>
+            <p>C++ was designed to solve problems, and thus sees many practical applications. Furthermore, its ability for programmer control over both software and hardware makes it incredibly useful. One of these applications involves the manipulation of bits.</p>
+            <p>Bits are represented as 0s or 1s and are used in devices to store types of information. This page will look at some basic techniques of bit manipulation to read and write into bit streams, also known as "bit twiddling", "bit fiddling", or "bit-bashing".</p>
+          <article>
+      </section>
+      <section id="Bit_Operations" class="main-section">
+        <header>Bit Operations</header>
+        <article>
+          <p>There are a few fundamental bit operators that will be used in this discussion of bit manipulation. They are listed as follows:</p>
+          <ul>
+            <li>
+              <span><<:</span> Shift all bits of the bit field to the left
+            </li>
+            <li>
+              <span>>>:</span> Shift all bits of the bit field to the right
+              </li>
+              <li>
+              <span>&:</span> Logical Operator of AND to compare two bit fields
+              </li>
+              <li>
+              <span>|:</span> Logical Operator of OR to compare two bit fields
+              </li>
+              <li>
+              <span>~:</span> Complements bit or bit-field
+              </li>
+          </ul>
+        </article>
+      </section>
+      <section id="Reading_Bits" class="main-section">
+        <header>Reading Bits</header>
+          <article>
+            <p>Suppose that you have the given 16-bit Control Register pointer declared below</p>
+            <code>volatile unsigned int * CtrlReg = (unsigned int*) 0xAFF8;</code>
+            <p>In order to read the single bit 0 of the Control Register, you would have to use the AND operator to compare the CtrlRegister to the bit or bit field you want to read.</p>
+            <code>int readVal = (*CtrlReg & 0x0);
+              <br>cout << readVal;
+            </code>
+            <p>With a previously declared field mask, the hex value can be replaced as such:</p>
+            <code>int readVal = (*CtrlReg & fieldMask);
+              <br>cout << readVal;
+            </code>
+            <p>This would work for reading values at the beginning bits of a field. For bits in the middle of the field, you would use the shift operators.
+            <code>int readVal = ((*CtrlReg & fieldMask) >> 5; //reads bit stream in the middle of the field
+              <br>cout << readVal;
+            </code>
+          </article>
+      </section>
+      <section id="Writing_to_a_Field" class="main-section">
+        <header>Writing to a Field</header>
+        <article>
+          <p>It is one thing to be able to read the information stored in a field. In order to write to a field, two things must be done:
+          <ul>
+            <li> The desired range of bits that you want to write to must be cleared out first. Zero'ing a field clears the area of undesired memory information. This is done by AND'ing against the complement of the bit mask with the initial memory location</li>
+            <li> The range must then be written to, usually with a shift to insert the desired value into the bit field. This is done by ORing the bit mask with the memory location.
+          </ul>
+          <p>An example is shown below of writing the value of "12" to a bits of 5 to 10 of a previously declared Control Register:</p>
+          <code>
+            int fieldMask = 0x7F0;<br>
+            int insertionValue = 12;<br>
+            *CtrlReg &= ~(fieldMask);<br>
+            *CtrlReg |= (insertionValue << 5);
+          </code>
+        </article>
+      </section>
+
+      <section id="Conclusion" class="main-section">
+        <header>Conclusion</header>
+        <article>
+          <p>This is just a brief overview of the utility of C++ to perform as a high-level language as well as dive deeper into lower-level manipulation of individual bits stored in memory. Explore other resources and try them yourself on hardware to get a better familiarity and experience with the subject.</p>  
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
