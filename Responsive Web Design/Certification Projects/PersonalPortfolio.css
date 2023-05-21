@@ -1,0 +1,107 @@
+
+:root
+{
+  --color1: #aa2355;
+  --color2: #881345;
+  --color3: linear-gradient(45deg, #bb99ff, #77aaff);
+ --textcolor1: #efefef;
+}
+
+html
+{
+  background: var(--color3);
+}
+
+#navbar {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color1);
+  height: 5rem;
+  font-size: 1.5rem;
+  z-index: 3;
+  
+}
+
+.nav-link {
+  display: flex;
+  margin-right: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--textcolor1);;
+  height: 40%;
+}
+
+a:hover
+{
+  background-color: var(--color2);
+}
+
+.welcome
+{
+  position: relative;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 40rem;
+  width: 100vw;
+  margin: none;
+  border: none;
+  background: var(--color3);
+}
+
+.name
+{
+  color: var(--textcolor1);
+  font-size: 3rem;
+  margin-top: 250px;
+}
+.undername
+{
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+}
+.projects
+{
+  margin-top: 10vw;
+}
+.grid
+{
+  display: grid;
+  grid-template-columns: 49% 49%;
+  column-gap: 1rem;
+  background-color: var(--color2);
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+img
+{
+  max-width: 40vw;
+  min-height: 100px;
+  
+}
+
+@media only screen and (max-width: 600px)
+{
+  img
+  {
+    max-width: 20vw;
+    min-height: 20vw;
+  }
+}
