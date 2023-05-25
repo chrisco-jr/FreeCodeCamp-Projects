@@ -1,3 +1,4 @@
+//PURPOSE: CHECK IF WORD IS PALINDROME, IF PALINDROME RETURN TRUE, ELSE RETURN FALSE
 function palindrome(str) {
   //flag variable and initiliazation
   var isPalindrome = false;
