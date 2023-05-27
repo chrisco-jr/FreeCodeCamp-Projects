@@ -169,8 +169,51 @@ function pairElement(str) {
 
 console.log(pairElement("GCG"));
 
+//Finds missing letter in passed letter range and returns it
+function fearNotLetter(str) {
+  for(let i = 1; i < str.length; i++)
+  {
+    if (str.charCodeAt(i) - 1 !== str.charCodeAt(i-1))
+    {
+      return String.fromCharCode(str.charCodeAt(i) - 1);
+    }
+  }
+  return undefined;
+}
 
+console.log(fearNotLetter("abce"));
 
+//Takes two arrays, return one array of uniwue value in order of original arrays
+function uniteUnique(...arr) {
+  let verify = [];
+  for(let i = 0; i < arr.length; i++)
+  {
+    //console.log(arr[i]);
+    for(let j = 0; j < arr[i].length; j++)
+    {
+      //console.log(arr[i][j]);
+      if(verify.indexOf(arr[i][j]) < 0)
+      {
+        verify.push(arr[i][j]);
+      }
+    }
+  }
+  return verify;
+}
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+
+//Convert &, <, >, ", and ' to corresponding HTML elements
+function convertHTML(str) {
+  str = str.replace(/&/, "&amp;");
+  str = str.replace(/</g, "&lt;");
+  str = str.replace(/>/g, "&gt;");
+  str = str.replace(/\"/g, "&quot;");
+  str = str.replace(/\'/, "&apos;");
+  return str;
+}
+
+console.log(convertHTML("Hamburgers < Pizza < Tacos"));
 
 
 
