@@ -215,7 +215,113 @@ function convertHTML(str) {
 
 console.log(convertHTML("Hamburgers < Pizza < Tacos"));
 
+//Sum all odd fibonacci numbers up to num parameter
+function sumFibs(num) {
+  var sum = 0;
+  var currentNum = 1;
+  var lastNum = 0;
+  while (currentNum <= num)
+  {
+    if(currentNum % 2 == 1)
+    {
+      sum += currentNum;
+    }
+    currentNum += lastNum;
+    lastNum = currentNum - lastNum;
 
+  }
+  console.log(sum);
+  return sum;
+}
+
+sumFibs(75025);
+
+//Returns sum of all prime numbers up to num parameter
+function sumPrimes(num) {
+  var sum = 0;
+  for(let j = 2; j <= num; j++)
+  {
+    if (prime(j))
+    {
+      //console.log("Adding: " + j);
+      sum += j;
+    }
+  }
+  return sum;
+}
+
+function prime(num)
+{
+  var isPrime = true;
+  for (let i = 2; i < num; i++)
+  {
+    //console.log(num + " % " + i + ": " + num % i);
+    if (num % i == 0)
+    {
+      //console.log(num + " is not prime");
+      isPrime = false;
+      break;
+    }
+    
+  }  
+  return isPrime;
+}
+
+console.log(sumPrimes(977));
+//console.log(prime(9))
+
+//Find Smallest Common Multiple (CAN  BE OPTIMIZED)
+function smallestCommons(arr) {
+  var low = 0;
+  var high = 0;
+  var smallestCommon = 1;
+  let multiArray = [];
+  
+  if(arr[1] > arr[0])
+  {
+    low = arr[0];
+    high = arr[1];
+  }
+  else
+  {
+    low = arr[1];
+    high = arr[0];
+  }
+
+  for(let i = low; i <= high; i++)
+  {
+    multiArray.push(i);
+  }
+  console.log(multiArray);
+  
+  var found = false;
+  var currentMultiple = high;
+  var counter = 2;
+  var counter2 = 2;
+  while(!found)
+  {
+    
+    found = true;
+    //console.log("current multiple: " + currentMultiple);
+    for(let i = 0; i < multiArray.length - 1; i++)
+    {
+      if(multiArray[i] != 1 && currentMultiple % multiArray[i] != 0)
+      {
+        
+        counter = low * (counter2++);
+        currentMultiple = high * counter;
+        found = false;
+        break;
+      }
+    }
+  }
+  smallestCommon = currentMultiple;
+  
+  console.log(smallestCommon);
+  return smallestCommon;
+}
+
+smallestCommons([18,23]);
 
 
 
