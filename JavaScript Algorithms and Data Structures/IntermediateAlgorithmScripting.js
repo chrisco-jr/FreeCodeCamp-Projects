@@ -323,6 +323,65 @@ function smallestCommons(arr) {
 
 smallestCommons([18,23]);
 
+//Drop Elements at beginning of array that do not meet function
+function dropElements(arr, func) {
+  while(!func(arr[0]))
+  {
+    arr.shift();
+  }
+  return arr;
+}
+
+console.log(dropElements([1, 2, 3], function(n) {return n < 3; }));
+
+//flatten multidimensional arrays into one depth
+function steamrollArray(arr) {
+  let flat = [];
+  for (let i = 0; i < arr.length; i++)
+  {
+    if (isArray(arr[i]))
+    {
+      flat.push(...steamrollArray(arr[i]));
+    }
+    else
+    {
+      flat.push(arr[i]);
+    }
+  }
+  return flat;
+}
+
+function isArray(arr)
+{
+  return Array.isArray(arr);
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
+
+//Convert Binary String to English String
+function binaryAgent(str) {
+  let result = "";
+  let binArray = str.split(" ");
+  let decArray = [];
+  //console.log(binArray);
+  for(let i = 0; i < binArray.length; i++)
+  {
+    var currentValue = binArray[i];
+    var decimal = 0;
+    for(let j = binArray[i].length - 1;  j >= 0; j--)
+    {
+      if (binArray[i][j] == 1)
+      {
+        //console.log(Math.pow(2,7-j));
+        decimal += (Math.pow(2,binArray[i].length-1-j));
+      }
+    }
+    result += String.fromCharCode(decimal);
+  }
+  return result;
+}
+
+console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
 
 
 
