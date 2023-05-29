@@ -423,4 +423,51 @@ function addTogether()
 console.log(addTogether(2));
 //console.log(addTogether(5)(7));
 
+//Making a person with appropriate getters/setters
+const Person = function(firstAndLast) {
+  var splitName = firstAndLast.split(" ");
+  //getters
+  this.getFullName = function() {
+    return splitName[0] + " " + splitName[1];
+  };
+  this.getFirstName = function() {
+    return splitName[0];
+  };
+  this.getLastName = function() {
+    return splitName[1];
+  };
+  //setters
+  this.setFirstName = function(first)
+  {
+    splitName[0] = first;
+  }
+  this.setLastName = function(last)
+  {
+    splitName[1] = last;
+  }
+  this.setFullName = function(firstAndLast)
+  {
+    splitName = firstAndLast.split(" ");
+  }
+  return firstAndLast;
+};
+
+const bob = new Person('Bob Ross');
+bob.getFullName();
+console.log(Object.keys(bob).length);
+
+//Transform elements average altitude to orbital period for all elements in passed array
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  
+  for (let i = 0; i < arr.length; i++)
+  {
+    arr[i].orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earthRadius + arr[i].avgAlt, 3)/GM));
+    delete arr[i].avgAlt;
+  }
+  return arr;
+}
+
+console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]));
 
