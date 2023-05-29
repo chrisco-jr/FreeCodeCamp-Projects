@@ -383,7 +383,44 @@ function binaryAgent(str) {
 
 console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
 
+//Check if predicate of collection of items is truthy for all elements
+function truthCheck(collection, pre) {
+  var isTruthy = true;
+  for (let i = 0; i < collection.length; i++)
+  {
+    //console.log(collection[i][pre]);
+    if (Boolean(collection[i][pre]) != true)
+    {
+      isTruthy = false;
+    }
+  }
+  return isTruthy;
+}
 
+truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot");
 
+//Add together two arguments if both are valid numbers
+function addTogether()
+{
+  const [first, second] = arguments;
+
+  if(typeof(first) !== 'number')
+  {
+    return undefined;
+  }
+  if (arguments.length == 1)
+  {
+    return (second) => addTogether(first, second);
+  }
+  if (typeof(second) !== 'number')
+
+  {
+    return undefined;
+  }
+  return first + second;
+}
+
+console.log(addTogether(2));
+//console.log(addTogether(5)(7));
 
 
